@@ -48,3 +48,15 @@
 .boxes .box h1 {
   color: var(--button-color);
 }
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .boxes {
+    flex-direction: column;
+    gap: 50px;
+  }
+}

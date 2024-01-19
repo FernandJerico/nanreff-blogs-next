@@ -15,10 +15,25 @@ export const generateMetadata = async ({ params }) => {
   };
 };
 
+// Fetch Data With API
+const getData = async (slug) => {
+  const response = await fetch(`http://localhost:3000/api/blog/${slug}`);
+
+  if (!response.ok) {
+    throw new Error("something went wrong!");
+  }
+
+  return response.json();
+};
+
 const SinglePostPage = async ({ params }) => {
   const { slug } = params;
 
-  const post = await getPost(slug);
+  // Fetch Data With API
+  const post = await getData(slug);
+
+  // Fetch Data Without API
+  // const post = await getPost(slug);
 
   return (
     <div className={styles.container}>

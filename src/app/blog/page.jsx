@@ -7,8 +7,25 @@ export const metadata = {
   description: "Blogs description",
 };
 
+// Fetch Data With API
+const getData = async () => {
+  const response = await fetch("http://localhost:3000/api/blog", {
+    next: { revalidate: 3600 },
+  });
+
+  if (!response.ok) {
+    throw new Error("something went wrong!");
+  }
+
+  return response.json();
+};
+
 const BlogPage = async () => {
-  const posts = await getPosts();
+  // Fetch Data With API
+  const posts = await getData();
+
+  // Fetch Data Without API
+  // const posts = await getPosts();
 
   return (
     <div className={styles.container}>
